@@ -1,9 +1,10 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
-<h1><?=$data['title']; ?></h1>
+<div class="jumbotron jumbotron-flud">
+	<div class="container">
+	<h1 class="display-3"><?=$data['title']?></h1>
+	<p class="lead"><?=$data['description']?></p>
+	</div>	
+</div>
 
-<ul>
-	<?php foreach($data['posts'] as $post) : ?>
-	<li><?php echo $post->title; ?></li>
-	<?php endforeach; ?>
-</ul>
+
 <?php require APPROOT . '/views/inc/footer.php'; ?>

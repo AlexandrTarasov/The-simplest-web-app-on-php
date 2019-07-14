@@ -3,14 +3,14 @@ class Pages extends Controller
 {
 	public function __construct()
 	{
-		$this->postModel = $this->model('Post');
+		// $this->postModel = $this->model('Post');
 	}
 	public function index()
 	{
-		$posts = $this->postModel->getPosts();
+		// $posts = $this->postModel->getPosts();
 		$data = [
 			'title' => 'pages Index',
-			'posts' => $posts
+			'description' => 'Simple sessi' 
 		];
 
 		$this->view('pages/index', $data);
@@ -18,7 +18,8 @@ class Pages extends Controller
 	public function about()
 	{
 		$data = [
-			'title' => 'About page'
+			'title' => 'About page', 
+			'description' => 'description form about'
 		];
 		$this->view('pages/about', $data);
 	}

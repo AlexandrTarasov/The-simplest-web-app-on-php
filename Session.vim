@@ -26,32 +26,33 @@ imap <F3> "+gp
 nmap 	h h
 nmap 	l l
 nmap  :w
-vmap 9 <Plug>TComment_9
+nmap  <Plug>TComment_
+nmap 1 <Plug>TComment_1
+nmap 2 <Plug>TComment_2
+nmap 3 <Plug>TComment_3
+nmap 4 <Plug>TComment_4
+nmap 5 <Plug>TComment_5
+nmap 6 <Plug>TComment_6
+nmap 7 <Plug>TComment_7
+nmap 8 <Plug>TComment_8
 nmap 9 <Plug>TComment_9
+vmap 9 <Plug>TComment_9
 omap 9 <Plug>TComment_9
 vmap 8 <Plug>TComment_8
-nmap 8 <Plug>TComment_8
 omap 8 <Plug>TComment_8
 vmap 7 <Plug>TComment_7
-nmap 7 <Plug>TComment_7
 omap 7 <Plug>TComment_7
 vmap 6 <Plug>TComment_6
-nmap 6 <Plug>TComment_6
 omap 6 <Plug>TComment_6
 vmap 5 <Plug>TComment_5
-nmap 5 <Plug>TComment_5
 omap 5 <Plug>TComment_5
 vmap 4 <Plug>TComment_4
-nmap 4 <Plug>TComment_4
 omap 4 <Plug>TComment_4
 vmap 3 <Plug>TComment_3
-nmap 3 <Plug>TComment_3
 omap 3 <Plug>TComment_3
 vmap 2 <Plug>TComment_2
-nmap 2 <Plug>TComment_2
 omap 2 <Plug>TComment_2
 vmap 1 <Plug>TComment_1
-nmap 1 <Plug>TComment_1
 omap 1 <Plug>TComment_1
 map ca <Plug>TComment_ca
 map cc <Plug>TComment_cc
@@ -64,7 +65,6 @@ map r <Plug>TComment_r
 map   <Plug>TComment_ 
 map p <Plug>TComment_p
 vmap  <Plug>TComment_
-nmap  <Plug>TComment_
 omap  <Plug>TComment_
 nmap ,sh :set filetype=html 
 nmap ,sj :set filetype=javascript 
@@ -75,6 +75,8 @@ vmap ,' di'pe
 vmap ,, 
 nmap 2h :exe "vertical resize " . (winwidth(0) - 56)
 nmap 2l :exe "vertical resize " . (winwidth(0) + 56)
+smap \__ <Plug>TComment_\__
+nmap \__ <Plug>TComment_\__
 map \_s <Plug>TComment_\_s
 map \_n <Plug>TComment_\_n
 map \_a <Plug>TComment_\_a
@@ -84,8 +86,6 @@ xmap \_i <Plug>TComment_\_i
 map \_  <Plug>TComment_\_ 
 map \_p <Plug>TComment_\_p
 xmap \__ <Plug>TComment_\__
-nmap \__ <Plug>TComment_\__
-smap \__ <Plug>TComment_\__
 omap \__ <Plug>TComment_\__
 map \n :NERDTreeToggle
 nnoremap \f :silent execute "grep! -R " . shellescape(expand("<cword>")) . " .":copen
@@ -132,6 +132,18 @@ nmap gx <Plug>NetrwBrowseX
 omap ic <Plug>TComment_ic
 vmap ic <Plug>TComment_ic
 nmap vt vf>
+nnoremap <Plug>TComment_ :TComment
+snoremap <Plug>TComment_\__ :TComment
+nnoremap <Plug>TComment_\__ :TComment
+nnoremap <Plug>TComment_1 :call tcomment#SetOption("count", 1)
+nnoremap <Plug>TComment_2 :call tcomment#SetOption("count", 2)
+nnoremap <Plug>TComment_3 :call tcomment#SetOption("count", 3)
+nnoremap <Plug>TComment_4 :call tcomment#SetOption("count", 4)
+nnoremap <Plug>TComment_5 :call tcomment#SetOption("count", 5)
+nnoremap <Plug>TComment_6 :call tcomment#SetOption("count", 6)
+nnoremap <Plug>TComment_7 :call tcomment#SetOption("count", 7)
+nnoremap <Plug>TComment_8 :call tcomment#SetOption("count", 8)
+nnoremap <Plug>TComment_9 :call tcomment#SetOption("count", 9)
 map <S-Insert> <MiddleMouse>
 nnoremap <silent> <Plug>TComment_gc9c :call tcomment#ResetOption() | if v:count > 0 | call tcomment#SetOption("count", v:count) | endif | let w:tcommentPos = getpos(".") |set opfunc=TCommentOpFunc_gc9cg@
 nnoremap <silent> <Plug>TComment_gc8c :call tcomment#ResetOption() | if v:count > 0 | call tcomment#SetOption("count", v:count) | endif | let w:tcommentPos = getpos(".") |set opfunc=TCommentOpFunc_gc8cg@
@@ -143,31 +155,22 @@ nnoremap <silent> <Plug>TComment_gc3c :call tcomment#ResetOption() | if v:cou
 nnoremap <silent> <Plug>TComment_gc2c :call tcomment#ResetOption() | if v:count > 0 | call tcomment#SetOption("count", v:count) | endif | let w:tcommentPos = getpos(".") |set opfunc=TCommentOpFunc_gc2cg@
 nnoremap <silent> <Plug>TComment_gc1c :call tcomment#ResetOption() | if v:count > 0 | call tcomment#SetOption("count", v:count) | endif | let w:tcommentPos = getpos(".") |set opfunc=TCommentOpFunc_gc1cg@
 vnoremap <Plug>TComment_9 :call tcomment#SetOption("count", 9)
-nnoremap <Plug>TComment_9 :call tcomment#SetOption("count", 9)
 onoremap <Plug>TComment_9 :call tcomment#SetOption("count", 9)
 vnoremap <Plug>TComment_8 :call tcomment#SetOption("count", 8)
-nnoremap <Plug>TComment_8 :call tcomment#SetOption("count", 8)
 onoremap <Plug>TComment_8 :call tcomment#SetOption("count", 8)
 vnoremap <Plug>TComment_7 :call tcomment#SetOption("count", 7)
-nnoremap <Plug>TComment_7 :call tcomment#SetOption("count", 7)
 onoremap <Plug>TComment_7 :call tcomment#SetOption("count", 7)
 vnoremap <Plug>TComment_6 :call tcomment#SetOption("count", 6)
-nnoremap <Plug>TComment_6 :call tcomment#SetOption("count", 6)
 onoremap <Plug>TComment_6 :call tcomment#SetOption("count", 6)
 vnoremap <Plug>TComment_5 :call tcomment#SetOption("count", 5)
-nnoremap <Plug>TComment_5 :call tcomment#SetOption("count", 5)
 onoremap <Plug>TComment_5 :call tcomment#SetOption("count", 5)
 vnoremap <Plug>TComment_4 :call tcomment#SetOption("count", 4)
-nnoremap <Plug>TComment_4 :call tcomment#SetOption("count", 4)
 onoremap <Plug>TComment_4 :call tcomment#SetOption("count", 4)
 vnoremap <Plug>TComment_3 :call tcomment#SetOption("count", 3)
-nnoremap <Plug>TComment_3 :call tcomment#SetOption("count", 3)
 onoremap <Plug>TComment_3 :call tcomment#SetOption("count", 3)
 vnoremap <Plug>TComment_2 :call tcomment#SetOption("count", 2)
-nnoremap <Plug>TComment_2 :call tcomment#SetOption("count", 2)
 onoremap <Plug>TComment_2 :call tcomment#SetOption("count", 2)
 vnoremap <Plug>TComment_1 :call tcomment#SetOption("count", 1)
-nnoremap <Plug>TComment_1 :call tcomment#SetOption("count", 1)
 onoremap <Plug>TComment_1 :call tcomment#SetOption("count", 1)
 nnoremap <silent> <Plug>TComment_gC :call tcomment#ResetOption() | if v:count > 0 | call tcomment#SetOption("count", v:count) | endif | let w:tcommentPos = getpos(".") |set opfunc=TCommentOpFunc_gCg@
 nnoremap <silent> <Plug>TComment_gc :call tcomment#ResetOption() | if v:count > 0 | call tcomment#SetOption("count", v:count) | endif | let w:tcommentPos = getpos(".") |set opfunc=TCommentOpFunc_gcg@
@@ -193,8 +196,6 @@ xnoremap <Plug>TComment_\_i :TCommentInline
 noremap <Plug>TComment_\_  :TComment 
 noremap <Plug>TComment_\_p vip:TComment
 xnoremap <Plug>TComment_\__ :TCommentMaybeInline
-nnoremap <Plug>TComment_\__ :TComment
-snoremap <Plug>TComment_\__ :TComment
 onoremap <Plug>TComment_\__ :TComment
 noremap <Plug>TComment_ca :call tcomment#SetOption("as", input("Comment as: ", &filetype, "customlist,tcomment#Complete"))
 noremap <Plug>TComment_cc :call tcomment#SetOption("count", v:count1)
@@ -207,7 +208,6 @@ noremap <Plug>TComment_r :TCommentRight
 noremap <Plug>TComment_  :TComment 
 noremap <Plug>TComment_p m`vip:TComment``
 vnoremap <Plug>TComment_ :TCommentMaybeInline
-nnoremap <Plug>TComment_ :TComment
 onoremap <Plug>TComment_ :TComment
 vnoremap <silent> <Plug>NetrwBrowseXVis :call netrw#BrowseXVis()
 nnoremap <silent> <Plug>NetrwBrowseX :call netrw#BrowseX(netrw#GX(),netrw#CheckIfRemote(netrw#GX()))
@@ -238,15 +238,22 @@ imap   <Plug>TComment_
 imap p <Plug>TComment_p
 imap  <Plug>TComment_
 inoremap $th $this->
-inoremap ,mf public function (){}kokkf<S-(>i
-inoremap ,mfs public static function (){}kokkf<S-(>i
-inoremap ,mfp private function (){}kokkf<S-(>i
+imap ,ge A
+imap ,f /\/\/vlc
 inoremap ,mfc public function __construct(){}ko
+inoremap ,mfp private function (){}kokkf<S-(>i
+inoremap ,mfs public static function (){}kokkf<S-(>i
+inoremap ,mf public function (){}ko//kkf<S-(>i
 imap ,mp public $ = '';yyF$a
 imap ,mpp private $ = '';yyF$a
 imap ,ma $arr_ = [];F_a
-imap ,mv $ = '';yyF$a
+imap ,mv $ = '';yy5hf'3hi
 imap ,, 
+inoremap <?= <?=?>hi
+inoremap <sel <select class="">o<option value=""></option>yyo</select>k
+inoremap <u <ul class="">o<li></li>yyo</ul>k
+inoremap <a <a href=""></a> F<i
+inoremap <di <div class=""></div><S-%>ikA	
 nmap ­ :call AdjustFontSize(-2)
 nmap ½ :call AdjustFontSize(2)
 imap \c ya><S-$>p<S-%>a/hiki	 
@@ -254,11 +261,13 @@ imap \; A;
 imap \w (lxea);  
 imap \ec Aecho"</br>";
 inoremap cons console.log()i
+inoremap if( if(){}O//khi
 let &cpo=s:cpo_save
 unlet s:cpo_save
 set autoindent
 set background=dark
 set backspace=indent,eol,start
+set comments=s1:/*,mb:*,ex:*/,://,:#
 set confirm
 set dictionary=/usr/share/dict/func
 set directory=/tmp
@@ -276,6 +285,7 @@ set listchars=eol:¬,trail:·,extends:>,precedes:<,space:-,tab:↓-
 set matchpairs=(:),{:},[:],<:>
 set mouse=a
 set omnifunc=phpcomplete#CompletePHP
+set operatorfunc=TCommentOpFunc_gcc
 set printoptions=paper:a4
 set ruler
 set runtimepath=~/.vim,~/.vim/plugged/nerdtree/,~/.vim/plugged/tcomment_vim/,~/.vim/plugged/auto-pairs/,~/.vim/plugged/vim-blade/,/var/lib/vim/addons,/usr/share/vim/vimfiles,/usr/share/vim/vim81,/usr/share/vim/vimfiles/after,/var/lib/vim/addons/after,~/.vim/after
@@ -289,7 +299,7 @@ set noswapfile
 set tabstop=4
 set termencoding=utf-8
 set title
-set window=59
+set window=49
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
@@ -299,10 +309,15 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +27 app/libraries/Database.php
+badd +30 app/libraries/Database.php
+badd +36 app/views/users/register.php
+badd +288 ~/.vimrc
+badd +88 app/controllers/Users.php
+badd +22 app/views/users/login.php
+badd +2 app/views/inc/navbar.php
 argglobal
 silent! argdel *
-edit app/libraries/Database.php
+edit app/views/users/register.php
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -314,8 +329,8 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 31 + 80) / 160)
-exe 'vert 2resize ' . ((&columns * 128 + 80) / 160)
+exe 'vert 1resize ' . ((&columns * 23 + 80) / 160)
+exe 'vert 2resize ' . ((&columns * 136 + 80) / 160)
 argglobal
 enew
 file NERD_tree_1
@@ -466,7 +481,7 @@ setlocal nrformats=bin,octal,hex
 set number
 setlocal nonumber
 setlocal numberwidth=4
-setlocal omnifunc=
+setlocal omnifunc=phpcomplete#CompletePHP
 setlocal path=
 setlocal nopreserveindent
 setlocal nopreviewwindow
@@ -591,7 +606,7 @@ setlocal foldignore=#
 setlocal foldlevel=0
 setlocal foldmarker={{{,}}}
 set foldmethod=syntax
-setlocal foldmethod=syntax
+setlocal foldmethod=manual
 setlocal foldminlines=1
 setlocal foldnestmax=20
 setlocal foldtext=PHPFoldText()
@@ -667,16 +682,17 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 27 - ((26 * winheight(0) + 24) / 49)
+silent! normal! zE
+let s:l = 30 - ((29 * winheight(0) + 24) / 48)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-27
-normal! 05|
+30
+normal! 046|
 lcd ~/
 wincmd w
-exe 'vert 1resize ' . ((&columns * 31 + 80) / 160)
-exe 'vert 2resize ' . ((&columns * 128 + 80) / 160)
+exe 'vert 1resize ' . ((&columns * 23 + 80) / 160)
+exe 'vert 2resize ' . ((&columns * 136 + 80) / 160)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf

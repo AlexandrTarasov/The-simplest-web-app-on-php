@@ -3,6 +3,7 @@
 class Users extends Controller{
 	public function __construct()
 	{
+		$this->userModel = $this->model('User');
 
 	}
 	public function register()
@@ -21,6 +22,10 @@ class Users extends Controller{
 			];
 			if(empty($data['email'])){
 				$data['email_err'] = 'Введите мэйл';
+			} else {
+				if( $this->userModel->findUserByEmail($data['email']) ){
+					$data['email_err'] = 'Мэйл уже зарегистрирован';
+				}
 			}
 
 			if(empty($data['name'])){
@@ -44,7 +49,14 @@ class Users extends Controller{
 			if( empty($data['email_err']) &&  empty($data['name_err']) 
 				&&  empty($data['password_err'])  
 				&&  empty($data['confirm_password_err'])){
-				die('SECCESS');
+				$data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+				if( $this->userModel->register($data) ){
+					// flash('register_success',-'You-are-registered-and-can-log-in');
+					redirect('users/login');
+				}else{
+					die('problem with user registration view');
+				}
+
 			} else {
 				$this->view('users/register', $data);
 			}
@@ -85,7 +97,6 @@ class Users extends Controller{
 			} else {
 				$this->view('users/login', $data);
 			}
-
 		}else{
 			$data = [
 				'email' => '',

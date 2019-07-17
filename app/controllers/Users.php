@@ -51,7 +51,7 @@ class Users extends Controller{
 				&&  empty($data['confirm_password_err'])){
 				$data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 				if( $this->userModel->register($data) ){
-					// flash('register_success',-'You-are-registered-and-can-log-in');
+					flash('register_success', 'Вы зарегистрированы и можете войти');
 					redirect('users/login');
 				}else{
 					die('problem with user registration view');
@@ -91,9 +91,22 @@ class Users extends Controller{
 			if(empty($data['password'])){
 				$data['password_err'] = 'Введите пароль';
 			}
+
+			if( $this->userModel->findUserbyEmail($data['email']) ){
+
+			}else{
+				$data['email_err'] = 'нет такого пользователя';
+			}
+
 			if( empty($data['email_err'])  
 				&&  empty($data['password_err']) ) {
-				die('SECCESS');
+				$loggedInUser = $this->userModel->login($data['email'], $data['password']);
+				if( $loggedInUser ){
+					$this->createUserSession($loggedInUser);
+				}else{
+					$data['password_err'] = 'Не верный пароль';
+					$this->view('users/login', $data);
+				}
 			} else {
 				$this->view('users/login', $data);
 			}
@@ -106,5 +119,24 @@ class Users extends Controller{
 			];
 			$this->view('users/login', $data);
 		}
+	}
+	public function createUserSession($user)
+	{
+		$_SESSION['user_id'] = $user->id;
+		$_SESSION['user_email'] = $user->email;
+		$_SESSION['user_name'] = $user->name;
+		redirect('pages/index');
+	}	
+	public function logout()
+	{
+		unset($_SESSION['user_id']);
+		unset($_SESSION['user_email']);
+		unset($_SESSION['user_name']);
+		session_destroy();
+		redirect('users/login');
+	}
+	public function isLoggedId()
+	{
+		return (isset($_SESSION['user_id'])) ? true : false;
 	}
 }
